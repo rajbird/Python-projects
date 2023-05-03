@@ -3,134 +3,26 @@ from Tkinter import *
 import tkMessageBox
 
 root = Tk()
-C = Canvas(root, bg ="#ffa3fb",height = 630, width = 630)
-#C.create_line(215, 0, 215, 644, fill="#ffa3fb", width = 10)
-#C.create_line(430, 0, 430, 644, fill="#ffa3fb", width = 10)
-#C.create_line(0, 215, 644, 215, fill="#ffa3fb", width = 10)
-#C.create_line(0, 430, 644, 430, fill="#ffa3fb", width = 10)
-
-x = PhotoImage(file="x.gif")
-o = PhotoImage(file="o.gif")
-blank = PhotoImage(file="blank.gif")
+root.title("Tic Tac Toe")
+root.geometry('86x86')
+root.config(bg ="#ffa3fb")
 
 location = ["","","","","","","","",""]
-player = -1
+player = 1
 
 won = [[0,1,2], [3,4,5], [6,7,8], [0,3,6], [1,4,7], [2,5,8], [0,4,8], [2,4,6]]
-def zero():
+def clicked(btn, num, var):
 	global player
 	global location
 	if player == 1:
-		location[0] = "X"
-		zero.config(image=x, state = DISABLED)
+		location[num] = "X"
+		btn.config(state = DISABLED)
+		var.set("X")
 		player = 2
 	else:
-		location[0] = "O"
-		zero.config(image=o, state = DISABLED)
-		player = 1
-	winner()
-
-def one():
-	global player
-	global location
-	if player == 1:
-		location[1] = "X"
-		one.config(image=x, state = DISABLED)
-		player = 2
-	else:
-		location[1] = "O"
-		one.config(image=o, state = DISABLED)
-		player = 1
-	winner()
-
-def two():
-	global player
-	global location
-	if player == 1:
-		location[2] = "X"
-		two.config(image=x, state = DISABLED)
-		player = 2
-	else:
-		location[2] = "O"
-		two.config(image=o, state = DISABLED)
-		player = 1
-	winner()
-
-def three():
-	global player
-	global location
-	if player == 1:
-		location[3] = "X"
-		three.config(image=x, state = DISABLED)
-		player = 2
-	else:
-		location[3] = "O"
-		three.config(image=o, state = DISABLED)
-		player = 1
-	winner()
-
-def four():
-	global player
-	global location
-	if player == 1:
-		location[4] = "X"
-		four.config(image=x, state = DISABLED)
-		player = 2
-	else:
-		location[4] = "O"
-		four.config(image=o, state = DISABLED)
-		player = 1
-	winner()
-
-def five():
-	global player
-	global location
-	if player == 1:
-		location[5] = "X"
-		five.config(image=x, state = DISABLED)
-		player = 2
-	else:
-		location[5] = "O"
-		five.config(image=o, state = DISABLED)
-		player = 1
-	winner()
-
-def six():
-	global player
-	global location
-	if player == 1:
-		location[6] = "X"
-		six.config(image=x, state = DISABLED)
-		player = 2
-	else:
-		location[6] = "O"
-		six.config(image=o, state = DISABLED)
-		player = 1
-	winner()
-
-def seven():
-	global player
-	global location
-	if player == 1:
-		location[7] = "X"
-		seven.config(image=x, state = DISABLED)
-		player = 2
-	else:
-		location[7] = "O"
-		seven.config(image=o, state = DISABLED)
-		player = 1
-	winner()
-
-def eight():
-	global player
-	global location
-	if player == 1:
-		location[8] = "X"
-		eight.config(image=x, state = DISABLED)
-		player = 2
-	else:
-		location[8] = "O"
-		eight.config(image=o, state = DISABLED)
+		location[num] = "O"
+		btn.config(state = DISABLED)
+		var.set("O")
 		player = 1
 	winner()
 
@@ -162,34 +54,40 @@ def winner():
 	tkMessageBox.showinfo("Winner", "TIE")
 	root.destroy()
 
-zero = Button(root, bg ="#f9ccf8", image = blank , height = 200, width = 200, relief = FLAT, command = zero)
-zero.place(x=0, y=0)
+t0 = StringVar()
+zero = Button(root, bg ="#f9ccf8", textvariable = t0 , width = 2, relief = FLAT, command = lambda:clicked(zero, 0, t0))
+zero.grid(row=0,column=0, padx = 2, pady = 2)
 
-one = Button(root, bg ="#f9ccf8", image = blank, command = one, height = 200, width = 200, relief = FLAT)
-one.place(x=214,y=0)
+t1 = StringVar()
+one = Button(root, bg ="#f9ccf8", textvariable = t1, width = 2, relief = FLAT, command = lambda:clicked(one, 1, t1))
+one.grid(row=0,column=1, padx = 2, pady = 2)
 
-two = Button(root, bg ="#f9ccf8", image = blank, command = two, height = 200, width = 200, relief = FLAT)
-two.place(x=429,y=0)
+t2 = StringVar()
+two = Button(root, bg ="#f9ccf8", textvariable = t2, width = 2, relief = FLAT, command = lambda:clicked(two, 2, t2))
+two.grid(row=0,column=2, padx = 2, pady = 2)
 
-three = Button(root, bg ="#f9ccf8", image = blank, command = three, height = 200, width = 200, relief = FLAT)
-three.place(x=0,y=214)
+t3 = StringVar()
+three = Button(root, bg ="#f9ccf8", textvariable = t3, width = 2, relief = FLAT, command = lambda:clicked(three, 3, t3))
+three.grid(row=1,column=0, padx = 2, pady = 2)
 
-four = Button(root, bg ="#f9ccf8", image = blank, command = four, height = 200, width = 200, relief = FLAT)
-four.place(x=214,y=214)
+t4 = StringVar()
+four = Button(root, bg ="#f9ccf8", textvariable =t4, width = 2, relief = FLAT, command = lambda:clicked(four, 4, t4))
+four.grid(row=1,column=1, padx = 2, pady = 2)
 
-five = Button(root, bg ="#f9ccf8", image = blank, command = five, height = 200, width = 200, relief = FLAT)
-five.place(x=429,y=214)
+t5 = StringVar()
+five = Button(root, bg ="#f9ccf8", textvariable =t5, width = 2, relief = FLAT, command = lambda:clicked(five, 5, t5))
+five.grid(row=1,column=2, padx = 2, pady = 2)
 
-six = Button(root, bg ="#f9ccf8", image = blank, command = six, height = 200, width = 200, relief = FLAT)
-six.place(x=0,y=429)
+t6 = StringVar()
+six = Button(root, bg ="#f9ccf8", textvariable = t6, width = 2, relief = FLAT, command = lambda:clicked(six, 6, t6))
+six.grid(row=2,column=0, padx = 2, pady = 2)
 
-seven = Button(root, bg ="#f9ccf8", image = blank, command = seven, height = 200, width = 200, relief = FLAT)
-seven.place(x=214,y=429)
+t7 = StringVar()
+seven = Button(root, bg ="#f9ccf8", textvariable = t7, width = 2, relief = FLAT, command = lambda:clicked(seven, 7, t7))
+seven.grid(row=2,column=1, padx = 2, pady = 2)
 
-eight = Button(root, bg ="#f9ccf8", image = blank, command = eight, height = 200, width = 200, relief = FLAT)
-eight.place(x=429,y=429)
+t8 = StringVar()
+eight = Button(root, bg ="#f9ccf8", textvariable = t8, width = 2, relief = FLAT, command = lambda:clicked(eight, 8, t8))
+eight.grid(row=2,column=2, padx = 2, pady = 2)
 
-
-player = 1
-C.pack()
 root.mainloop()
